@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import Categories from "./components/Categories";
 import Sort from "./components/Sort";
 import PizzaBlock from "./components/PizzaBlock";
-import pizzas from './asets/pizza.db.json'
+import pizzas from './server/pizza.db.json'
 
 const App = () => {
     return (
@@ -13,14 +13,14 @@ const App = () => {
             <div className="content">
                 <div className="container">
                     <div className="content__top">
-                        <Categories/>
+                        <Categories />
                         <Sort/>
                     </div>
                     <h2 className='content__title'>Все пиццы</h2>
                     <div className='content__items'>
                         {
                             pizzas.map((obj) => (
-                                <PizzaBlock {...obj} />
+                                <PizzaBlock key={obj.id} {...obj} />
                             ))
                         }
                     </div>
