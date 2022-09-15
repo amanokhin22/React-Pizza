@@ -6,7 +6,7 @@ const PizzaBlock = ({title, price, imageUrl, sizes, types}) => {
     const typeNames = ['тонкое', "традиционное"];
 
     return (
-        <div>
+        <div className="pizza-block-wrapper">
             <div className="pizza-block">
                 <img className="pizza-block__image" src={imageUrl} alt="Pizza"/>
                 <h4 className="pizza-block__title">{title}</h4>
@@ -21,12 +21,15 @@ const PizzaBlock = ({title, price, imageUrl, sizes, types}) => {
                     </ul>
                     <ul>
                         {sizes.map((size, i) => (
-                            <li key={size} onClick={() => setActiveSize(i)} className={activeSize === i? 'active' : ''}>{size} см.</li>
+                            <li key={size} onClick={() => setActiveSize(i)}
+                                className={activeSize === i? 'active' : ''}>
+                                {size} см.
+                            </li>
                         ))}
                     </ul>
                 </div>
                 <div className="pizza-block__bottom">
-                    <div className="pizza-block__price">от {price} ₽</div>
+                    <div className="pizza-block__price">от {price} $</div>
                     <button className="button button--outline button--add">
                         <svg
                             width="12"
