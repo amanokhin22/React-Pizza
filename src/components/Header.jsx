@@ -1,6 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import logoSvg from "../asets/img/pizza-logo.svg"
+import Search from "./search/search";
 
 const Header = () => {
     return (
@@ -15,6 +16,7 @@ const Header = () => {
                         </div>
                     </div>
                 </Link>
+                <Search/>
                 {/*{location.pathname !== '/cart' && <Search/>}*/}
                 <div className="header__cart">
                     {/*{location.pathname !== '/cart' && (*/}

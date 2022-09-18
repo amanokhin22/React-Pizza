@@ -1,14 +1,17 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import Categories from "../components/Categories";
 import Sort from "../components/Sort";
 import Skeleton from "../components/pizza-block/Skeleton";
 import PizzaBlock from "../components/pizza-block/PizzaBlock";
+import Pagination from "../components/pagination/pagination";
+import {SearchContext} from "../App";
 
 const Home = () => {
-
+    const {searchValue} = useContext(SearchContext)
     const [items, setItems] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [categoryId, setCategoryId] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
     const [sortType, setSortType] = useState({
         name: 'популярности',
         sortProperty: 'rating'
@@ -20,17 +23,30 @@ const Home = () => {
         const sortBy = sortType.sortProperty.replace('-', '');
         const order = sortType.sortProperty.includes('-') ? 'asc' : 'desc';
         const category = categoryId > 0 ? `category=${categoryId}` : '';
+        const search = searchValue ? `&search=${searchValue}` : '';
 
         fetch(
-            `https://6322e53da624bced308118bc.mockapi.io/items?${category}&sortBy=${sortBy}&order=${order}`
-        )
+            `https://6322e53da624bced308118bc.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`)
             .then((res) => res.json())
             .then((arr) => {
                 setItems(arr);
                 setIsLoading(false)
             });
         window.scrollTo(0, 0);
-    }, [categoryId, sortType]);
+    }, [categoryId, sortType, searchValue, currentPage]);
+
+    //Такая фильтрация годится при наличии небольшого, статичного массива, тогда можно сделать поиск на базе JS без BE
+    // const pizzas = items.filter(obj => {
+    //     if (obj.title.toLowerCase().includes(searchValue.toLowerCase())) {
+    //         return true;
+    //     }
+    //     return false
+    // }).map((obj) => <PizzaBlock key={obj.id} {...obj} />);
+
+    const pizzas = items.map((obj) => <PizzaBlock key={obj.id} {...obj} />);
+
+
+    const skeletons = [...new Array(6)].map((_, index) => <Skeleton key={index}/>);
 
 
     return (
@@ -42,11 +58,11 @@ const Home = () => {
             <h2 className='content__title'>Все пиццы</h2>
             <div className='content__items'>
                 {isLoading
-                    ? [...new Array(6)].map((_, index) => <Skeleton key={index}/>)
-                    : items.map((obj) => <PizzaBlock key={obj.id} {...obj} />
-                    )
+                    ? skeletons
+                    : pizzas
                 }
             </div>
+            <Pagination onChangePage={(number) => setCurrentPage(number)}/>
         </div>
     )
 }
