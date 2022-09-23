@@ -1,19 +1,19 @@
-import React, {useCallback, useContext, useRef, useState} from "react";
+import React, {useCallback, useRef, useState} from "react";
 import styles from './search.module.scss';
-import {SearchContext} from "../../App";
 import debounce from 'lodash.debounce';
+import {useDispatch} from "react-redux";
+import {setSearchValue} from "../../redux/filter/filterSlice";
 
 
 const Search = () => {
+    const dispatch = useDispatch();
     const [value, setValue] = useState('');
-
-    const {searchValue, setSearchValue} = useContext(SearchContext) //addEventListener
     const inputRef = useRef();
 
     const onClickClear = () => {
-        setSearchValue('');
+        dispatch(setSearchValue(value));
         setValue('');
-        inputRef.current.focus(searchValue)
+        inputRef.current?.focus()
     };
 
     const updateSearchValue = useCallback(
@@ -41,7 +41,7 @@ const Search = () => {
                     cx="14"
                     cy="14"
                     fill="none"
-                    id="XMLID_42_"
+                    id="XML-ID_42_"
                     r="9"
                     stroke="#000000"
                     strokeLinecap="round"

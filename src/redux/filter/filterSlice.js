@@ -23,7 +23,7 @@ const filterSlice = createSlice({
         //     state.count += 1
         // }, Или так можно создать эту функцию. Это по редакс-тулкиту сделано, а не по редаксу
         setSearchValue(state, action: PayloadAction<string>) {
-            state.categoryId = action.payload;
+            state.searchValue = action.payload;
         },
         setSort(state, action: PayloadAction<Sort>) {
             state.sort = action.payload;
@@ -48,6 +48,6 @@ const filterSlice = createSlice({
     },
 })
 
-export const {setCategoryId, setSort, setCurrentPage, setFilters, setSearchValue} = filterSlice.actions
+export const {setCategoryId, setSearchValue, setSort, setCurrentPage, setFilters} = filterSlice.actions
 
 export default filterSlice.reducer
