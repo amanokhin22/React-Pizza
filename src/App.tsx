@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import "./scss/app.scss";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
@@ -9,7 +9,6 @@ import MainLayout from "./layouts/MainLayout";
 
 
 const App = () => {
-
 
     return (
             <Routes>
