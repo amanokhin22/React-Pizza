@@ -1,9 +1,28 @@
 import React from "react";
-import {addItem, minusItem, removeItem} from "../redux/cart/cartSlice";
 import {useDispatch} from "react-redux";
+import {addItem, minusItem, removeItem} from "../redux/cart/cartSlice";
+import { CartItem as CartItemType } from '../redux/cart/types';
 
+type CartItemPropsType = {
+    id: string,
+    title: string,
+    type: string,
+    size: number,
+    price: number,
+    count: number,
+    imageUrl: string
+}
 
-const CartItem = ({id, title, type, size, price, count, imageUrl}) => {
+export const CartItem: React.FC<CartItemPropsType> = (
+    {
+        id,
+        title,
+        type,
+        size,
+        price,
+        count,
+        imageUrl,
+    }) => {
 
     const dispatch = useDispatch();
 
@@ -11,7 +30,7 @@ const CartItem = ({id, title, type, size, price, count, imageUrl}) => {
         dispatch(
             addItem({
                 id,
-            }),
+            } as CartItemType),
         );
     };
 
@@ -22,7 +41,7 @@ const CartItem = ({id, title, type, size, price, count, imageUrl}) => {
     };
 
     const onClickRemove = () => {
-        if (window.confirm('Are you sure you want to remove?')) {
+        if (window.confirm('Ты действительно хочешь удалить товар?')) {
             dispatch(removeItem(id));
         }
     };
@@ -102,5 +121,3 @@ const CartItem = ({id, title, type, size, price, count, imageUrl}) => {
     );
 
 }
-
-export default CartItem
