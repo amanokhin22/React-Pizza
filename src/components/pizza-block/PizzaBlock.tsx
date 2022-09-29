@@ -18,17 +18,16 @@ type PizzaBlockPropsType = {
 }
 
 export const PizzaBlock: React.FC<PizzaBlockPropsType> = ({
-                                                       id,
-                                                       title,
-                                                       price,
-                                                       imageUrl,
-                                                       sizes,
-                                                       types,
-}) => {
+                                                              id,
+                                                              title,
+                                                              price,
+                                                              imageUrl,
+                                                              sizes,
+                                                              types,
+                                                          }) => {
 
     const dispatch = useDispatch();
     const cartItem = useSelector(selectCartItemById(id));
-
     const [activeType, setActiveType] = useState(0);
     const [activeSize, setActiveSize] = useState(0);
 
@@ -51,7 +50,7 @@ export const PizzaBlock: React.FC<PizzaBlockPropsType> = ({
         <div className="pizza-block-wrapper">
             <div className="pizza-block">
                 <Link key={id} to={`/pizza/${id}`}>
-                    <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
+                    <img className="pizza-block__image" src={imageUrl} alt="Pizza"/>
                     <h4 className="pizza-block__title">{title}</h4>
                 </Link>
                 <div className="pizza-block__selector">

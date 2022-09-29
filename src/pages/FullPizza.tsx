@@ -4,7 +4,7 @@ import {Link, useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 
 
-const FullPizza: React.FC = () => {
+export const FullPizza: React.FC = () => {
     const [pizza, setPizza] = useState<{
         imageUrl: string;
         title: string;
@@ -16,7 +16,7 @@ const FullPizza: React.FC = () => {
     useEffect(() => {
         async function fetchPizza() {
             try {
-                const {data} = await axios.get('https://6322e53da624bced308118bc.mockapi.io/items' + id)
+                const {data} = await axios.get('https://6322e53da624bced308118bc.mockapi.io/items' + id);
                 setPizza(data)
             } catch (error) {
                 alert('Ошибка при получении пиццы');
@@ -24,7 +24,8 @@ const FullPizza: React.FC = () => {
             }
         }
 
-        fetchPizza().then(() => {});
+        fetchPizza().then(() => {
+        });
     }, []); // Нужен ли then???
 
     if (!pizza) {
@@ -33,7 +34,7 @@ const FullPizza: React.FC = () => {
 
     return (
         <div className="container">
-            <img alt="" src={pizza.imageUrl} />
+            <img alt="" src={pizza.imageUrl}/>
             <h2>{pizza.title}</h2>
             <h4>{pizza.price} $</h4>
             <Link to="/">
@@ -44,5 +45,3 @@ const FullPizza: React.FC = () => {
         </div>
     );
 };
-
-export default FullPizza;

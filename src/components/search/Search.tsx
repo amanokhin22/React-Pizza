@@ -18,7 +18,7 @@ const Search: React.FC = () => {
 
     const updateSearchValue = useCallback(
         debounce((str: string) => {
-           dispatch(setSearchValue(str));
+            dispatch(setSearchValue(str));
         }, 250),
         [],
     );

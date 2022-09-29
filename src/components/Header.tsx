@@ -29,11 +29,10 @@ const Header: React.FC = () => {
                         <img width="38" src={logoSvg} alt="Pizza logo"/>
                         <div>
                             <h1>React Pizza V2</h1>
-                            <p>самая вкусная пицца во вселенной</p>
+                            <p>Самая вкусная пицца во вселенной</p>
                         </div>
                     </div>
                 </Link>
-                <Search/>
                 {location.pathname !== '/cart' && <Search/>}
                 <div className="header__cart">
                     {location.pathname !== '/cart' && (

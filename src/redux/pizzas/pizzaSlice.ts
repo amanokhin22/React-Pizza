@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {PizzaItem, PizzaSliceState, Status} from "./types";
 import {fetchPizzas} from "./asyncActions";
 
@@ -30,7 +30,6 @@ const pizzaSlice = createSlice({
         builder.addCase(fetchPizzas.rejected, (state) => {
             state.status = Status.ERROR;
             state.items = [];
-
         });
     },
 });

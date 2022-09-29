@@ -14,11 +14,6 @@ export enum Status {
     ERROR = 'error',
 }
 
-export interface PizzaSliceState {
-    items: PizzaItem[],
-    status: Status,
-}
-
 export type SearchPizzaParams = {
     sortBy: string,
     category: string,
@@ -26,4 +21,11 @@ export type SearchPizzaParams = {
     search: string,
     currentPage: string,
 };
+
+export interface PizzaSliceState {
+    items: PizzaItem[],
+    status: Status,
+}
+
+
 

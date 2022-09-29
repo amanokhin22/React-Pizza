@@ -4,7 +4,6 @@ import {setSort} from "../redux/filter/filterSlice";
 import {Sort as SortType} from "../redux/filter/types";
 import {SortPropertyEnum} from "../redux/filter/types";
 
-
 type SortItem = {
     name: string;
     sortProperty: SortPropertyEnum;
@@ -17,7 +16,6 @@ type PopupClick = MouseEvent & {
 type SortPopupProps = {
     value: SortType;
 };
-
 
 export const sortList: SortItem[] = [
     {name: 'популярности (По убыванию)', sortProperty: SortPropertyEnum.RATING_DESC},

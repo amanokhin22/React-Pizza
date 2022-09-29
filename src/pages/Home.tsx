@@ -1,6 +1,5 @@
-import React, {useCallback, useEffect, useRef} from "react";
+import React, {useCallback, useEffect} from "react";
 import {useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
 
 import Categories from "../components/Categories";
 import {Sort} from "../components/Sort";
@@ -20,6 +19,7 @@ const Home: React.FC = () => {
     const dispatch = useAppDispatch();
     //const isSearch = useRef(false);
     //const isMounted = useRef(false);
+
 
     const {items, status} = useSelector(selectPizzaData);
     const {categoryId, sort, currentPage, searchValue} = useSelector(selectFilter);
@@ -76,7 +76,8 @@ const Home: React.FC = () => {
         //   }),
         // );
 
-        getPizzas();
+        getPizzas().then(() => {
+        });
         // isMounted.current = true;
     }, [categoryId, sort.sortProperty, searchValue, currentPage]);
 
